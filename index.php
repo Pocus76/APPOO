@@ -1,5 +1,7 @@
 <?php
+include "./classes/Vehicule.php";
 include "./classes/Voiture.php";
+include "./classes/Log.php";
 
 $voiture1 = new Voiture();
 
@@ -14,6 +16,6 @@ $voiture1 -> vitesse = 25;
 
 if($ec = $voiture1 -> calculerEnergieCinetique())
 {
-    $ec = $ec . "Joules";
+    $ec = $ec . " Joules";
     Log::logWrite($ec);
 }
