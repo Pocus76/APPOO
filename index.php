@@ -12,10 +12,10 @@ $voiture1 -> couleur = "bleue";
 var_dump($voiture1);
 
 $voiture1 -> masse = 1000;
-$voiture1 -> vitesse = 25;
+$voiture1 -> vitesse = 28;
 
-if($ec = $voiture1 -> calculerEnergieCinetique())
-{
+if ($ec = $voiture1 -> calculerEnergieCinetique()) {
     $ec = $ec . " Joules";
+
     Log::logWrite($ec);
 }

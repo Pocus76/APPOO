@@ -1,10 +1,10 @@
 <?php
 class Voiture extends Vehicule
 {
-    public $nbRoues;
+    public $nbrRoues;
     public $couleur;
     public $carburant;
 
 
-}
 
+}

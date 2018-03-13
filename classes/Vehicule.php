@@ -1,16 +1,26 @@
+
 <?php
+/**
+ * Created by PhpStorm.
+ * User: frede
+ * Date: 13/03/2018
+ * Time: 12:31
+ */
+
 class Vehicule
 {
     public $masse;
-    public $vitesse;
+    public $vitesseInstantanee;
 
     public function calculerEnergieCinetique() : float
     {
-        if($this -> masse >= 0 && $this -> vitesse >= 0)
-        {
-            $ec = 0.5*$this -> masse * $this -> vitesse ** 2;
-            return $ec;
+        if ($this -> masse >= 0 && $this -> vitesseInstantanee >= 0) {
+            return 0.5 * $this -> masse * $this -> vitesseInstantanee ** 2;
         }
-        else return false;
+        else {
+            return false;
+        }
+
     }
+
 }
