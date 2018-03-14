@@ -2,6 +2,7 @@
 ini_set('smtp_port', 1025);
 include "./functions/classAutoLoader.php";
 spl_autoload_register('classAutoLoader');
+
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
@@ -15,20 +16,9 @@ spl_autoload_register('classAutoLoader');
 
 <?php
 include "./includes/header.php";
-
-$page = $_GET['page'] ?? "";
-$page = "./includes/" . $page . ".inc.php";
-
-$files = glob("./includes/*.inc.php");
-
-if (in_array($page, $files))
-    include $page;
-else
-    include "./includes/home.inc.php";
-
-
-
+CallPage::display();
 include "./includes/footer.php";
+
 ?>
 </div>
 </body>
