@@ -19,19 +19,20 @@ class Queries
     }
 
     function insert($sql) {
+        echo($sql);
         return $this -> db -> exec($sql);
     }
 
     function checkLogin($login, $pwd)
     {
-        $verif = $this -> db -> exec('SELECT * FROM membres_tbl WHERE mail=$login AND password=pwd');
-        $ok = mysqli_query($verif) or die('Erreur SQL !<br>'.'<br>');
-        if(!mysqli_num_rows($ok))
-        {
+        $verif = $this->db->exec('SELECT * FROM membres_tbl WHERE mail=$login AND password=pwd');
+        $ok = mysqli_query($verif) or die('Erreur SQL !<br>' . '<br>');
+        if (!mysqli_num_rows($ok)) {
             echo '<center><br><br><b>Erreur dans la saisie du login et/ou du mot de passe !</b>';
             echo '<br><br><a href="javascript:history.go(-1)">Retour</a></center>';
             exit();
         }
+    }
 
     function __destruct()
     {

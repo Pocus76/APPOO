@@ -1,14 +1,60 @@
 <h1>Login</h1>
-<form action="/functions/VerifLogin.php" method="post">
-    <div>
-        <label for="login">Login :</label>
-        <input type="text" id="login" name="login">
-    </div>
-    <div>
-        <label for="pwd">Mot de passe :</label>
-        <input type="password" id="pwd" name="pwd">
-    <div>
-    <div class="button">
-        <button type="submit">Se connecter</button>
-    </div>
-</form>
+<?php
+if (isset($_POST['frmLogin'])) {
+    $mail = $_POST['mail'] ?? "";
+    $password = $_POST['password'] ?? "";
+
+    $erreurs = array();
+
+    if ($mail == "") array_push($erreurs, "Veuillez saisir votre mail");
+    if ($password == "") array_push($erreurs, "Veuillez saisir votre mot de passe");
+
+    if (count($erreurs) > 0) {
+        $message = "<ul>";
+
+        for ($i = 0 ; $i < count($erreurs) ; $i++) {
+            $message .= "<li>";
+            $message .= $erreurs[$i];
+            $message .= "</li>";
+        }
+
+        $message .= "</ul>";
+
+        echo $message;
+        include "frmLogin.php";
+    }
+
+    else {
+        $rec = new Queries();
+        $password = sha1($password);
+        $token = uniqid(sha1(date('Y-m-d|H:m:s')), false);
+
+        $sql = "INSERT INTO t_users
+                (usenom, useprenom, usemail, usepassword, usetoken, id_groupes)
+                VALUES ('$name', '$firstName', '$mail', '$password', '$token', 3)";
+
+        $rec -> checkLogin($mail, $password);
+
+        $message = "<h1>Wunderbar !!!</h1>";
+        $message .= "<p>Vous êtes inscrit !!!</p>";
+        $message .= "<p>Merci de cliquer sur le lien pour valider</p>";
+        $message .= "<p><a href='http://localhost/CESI/AP1/index.php?";
+        $message .= "page=validationInscription&amp;token=";
+        $message .= $token;
+        $message .= "' target='_blank'>Lien</a></p>";
+
+
+
+
+
+
+
+        mail($mail, 'Confirmation compte', $message);
+        echo "<p>Ich bin dans la base</p>";
+    }
+
+}
+
+else {
+    include "frmLogin.php";
+}

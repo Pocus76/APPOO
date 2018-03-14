@@ -35,7 +35,7 @@ if (isset($_POST['frmRegistration'])) {
 
         $sql = "INSERT INTO t_users
                 (usenom, useprenom, usemail, usepassword, usetoken, id_groupes)
-                VALUES ('$name', '$firstName', '$mail', '$password', '$token', 3)";
+                VALUES ('$name', '$firstName', '$mail', '$password', '$token', 1)";
 
         $rec -> insert($sql);
 
