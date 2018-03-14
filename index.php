@@ -1,21 +1,35 @@
 <?php
-include "./classes/Vehicule.php";
-include "./classes/Voiture.php";
-include "./classes/Log.php";
+ini_set('smtp_port', 1025);
+include "./functions/classAutoLoader.php";
+spl_autoload_register('classAutoLoader');
+?>
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="utf-8" />
+    <title>CESI AP - Blog/e-commerce</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<body>
+<div id="container">
 
-$voiture1 = new Voiture();
+<?php
+include "./includes/header.php";
 
-var_dump($voiture1);
+$page = $_GET['page'] ?? "";
+$page = "./includes/" . $page . ".inc.php";
 
-$voiture1 -> couleur = "bleue";
+$files = glob("./includes/*.inc.php");
 
-var_dump($voiture1);
+if (in_array($page, $files))
+    include $page;
+else
+    include "./includes/home.inc.php";
 
-$voiture1 -> masse = 1000;
-$voiture1 -> vitesse = 28;
 
-if ($ec = $voiture1 -> calculerEnergieCinetique()) {
-    $ec = $ec . " Joules";
 
-    Log::logWrite($ec);
-}
+include "./includes/footer.php";
+?>
+</div>
+</body>
+</html>
