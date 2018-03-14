@@ -15,3 +15,4 @@ class CallPage
             include "./includes/home.inc.php";
     }
 }
+?>

@@ -45,7 +45,7 @@ if (isset($_POST['frmRegistration'])) {
         $message .= "<p><a href='http://localhost/CESI/AP1/index.php?";
         $message .= "page=validationInscription&amp;token=";
         $message .= $token;
-        $message .= "' target='_blank'>Lien</a>";
+        $message .= "' target='_blank'>Lien</a></p>";
 
 
 
