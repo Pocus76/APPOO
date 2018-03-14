@@ -1,5 +1,5 @@
 <h1>Login</h1>
-<form action="/classes/VerifLogin.php" method="post">
+<form action="/functions/VerifLogin.php" method="post">
     <div>
         <label for="login">Login :</label>
         <input type="text" id="login" name="login">
