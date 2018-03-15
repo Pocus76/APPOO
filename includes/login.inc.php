@@ -29,11 +29,9 @@ if (isset($_POST['frmLogin'])) {
         $password = sha1($password);
         $token = uniqid(sha1(date('Y-m-d|H:m:s')), false);
 
-        $sql = "INSERT INTO t_users
-                (usenom, useprenom, usemail, usepassword, usetoken, id_groupes)
-                VALUES ('$name', '$firstName', '$mail', '$password', '$token', 3)";
+        $sql = "SELECT * FROM membres_tbl WHERE mail=$mail AND password=$password";
 
-        $rec -> checkLogin($mail, $password);
+        $rec -> checkLogin($sql);
 
         $message = "<h1>Wunderbar !!!</h1>";
         $message .= "<p>Vous êtes inscrit !!!</p>";

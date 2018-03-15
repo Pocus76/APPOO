@@ -3,7 +3,7 @@ class Queries
 {
     // DSN : Data Source Name
     private $dsn = "mysql:dbname=ap;host=localhost;charset=utf8";
-    private $user = "ap";
+    private $user = "AP";
     private $password = "ap";
     private $db;
 
@@ -19,13 +19,12 @@ class Queries
     }
 
     function insert($sql) {
-        echo($sql);
         return $this -> db -> exec($sql);
     }
 
-    function checkLogin($login, $pwd)
+    function checkLogin($sql)
     {
-        $verif = $this->db->exec('SELECT * FROM membres_tbl WHERE mail=$login AND password=pwd');
+        $verif = $this->db->exec($sql);
         $ok = mysqli_query($verif) or die('Erreur SQL !<br>' . '<br>');
         if (!mysqli_num_rows($ok)) {
             echo '<center><br><br><b>Erreur dans la saisie du login et/ou du mot de passe !</b>';
